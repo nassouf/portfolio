@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark" data-colorblind="none">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insaf Jawahdou — Portfolio Galactique</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;min-height:100vh}
+
+:root {
+  --bg:#050a1a;--surface:rgba(255,255,255,.05);--border:rgba(255,255,255,.12);
+  --accent:#7ab4ff;--text1:#e0e8fa;--text2:#7a90b8;--text3:#3a5080;
+  --pill-bg:rgba(122,180,255,.1);--pill-bd:rgba(122,180,255,.22);--pill-tx:#90b8e8;
+  --nav-on:#7ab4ff;--nav-on-tx:#050a1a;
+  --planet1:#2563eb;--planet2:#091235;--ring:rgba(120,160,255,.35);
+  --shoot:rgba(255,255,255,.9);--star:#fff;--neb:rgba(80,20,130,.15);--tag-c:#6a9aff;
+  --card-bg:rgba(255,255,255,.03);--card-bd:rgba(255,255,255,.08);
+  --gold:#fbbf24;
+}
+[data-theme="light"] {
+  --bg:#eef2ff;--surface:rgba(0,0,0,.04);--border:rgba(0,0,0,.1);
+  --accent:#2563eb;--text1:#0f172a;--text2:#334155;--text3:#94a3b8;
+  --pill-bg:rgba(37,99,235,.08);--pill-bd:rgba(37,99,235,.2);--pill-tx:#1e40af;
+  --nav-on:#2563eb;--nav-on-tx:#fff;
+  --planet1:#3b6fd4;--planet2:#1e40af;--ring:rgba(37,99,235,.3);
+  --shoot:rgba(37,99,235,.7);--star:rgba(30,64,175,.5);--neb:rgba(124,58,237,.07);--tag-c:#2563eb;
+  --card-bg:rgba(0,0,0,.02);--card-bd:rgba(0,0,0,.07);
+  --gold:#d97706;
+}
+
+body { background:var(--bg); font-family:'DM Sans',sans-serif; color:var(--text1); transition:background .4s,color .4s; overflow-x:hidden; }
+
+/* ── SIDE ARROWS ── */
+.side-arrow {
+  position:fixed; top:0; height:100vh; width:70px; z-index:300;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; border:none; background:transparent;
+  opacity:0; transition:opacity .3s; pointer-events:none;
+}
+.side-arrow.left{left:0} .side-arrow.right{right:0}
+.side-arrow.visible{opacity:1;pointer-events:auto}
+.arrow-btn {
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);
+  display:flex;align-items:center;justify-content:center;
+  transition:background .2s,border-color .2s,transform .15s;
+  backdrop-filter:blur(8px);
+}
+.side-arrow:hover .arrow-btn{background:rgba(122,180,255,.18);border-color:rgba(122,180,255,.5);transform:scale(1.1)}
+[data-theme="light"] .arrow-btn{background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.15)}
+.arrow-btn svg{width:18px;height:18px;stroke:var(--text1);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.hover-zone{position:fixed;top:0;height:100vh;width:80px;z-index:299}
+.hover-zone.left{left:0} .hover-zone.right{right:0}
+
+/* ── TOOLBAR ── */
+#toolbar{position:fixed;top:20px;right:24px;z-index:400;display:flex;gap:8px;align-items:center}
+#theme-toggle{display:flex;align-items:center;background:var(--surface);border:.5px solid var(--border);border-radius:40px;padding:3px}
+.tt-opt{display:flex;align-items:center;gap:5px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--text2);padding:5px 12px;border-radius:32px;cursor:pointer;border:none;background:transparent;transition:all .2s;white-space:nowrap}
+.tt-opt.on{background:var(--accent);color:var(--nav-on-tx);font-weight:500}
+
+/* ── SCENE & PLANÈTE ── */
+#scene{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.star{position:absolute;border-radius:50%;background:var(--star);animation:tw var(--d,3s) ease-in-out infinite alternate;animation-delay:var(--dl,0s)}
+@keyframes tw{from{opacity:var(--a1,.2);transform:scale(1)}to{opacity:var(--a2,.9);transform:scale(1.5)}}
+
+/* Étoiles filantes */
+.shoot{position:absolute;height:2px;width:140px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--shoot));opacity:0;animation:ss2 var(--sd,7s) linear infinite;animation-delay:var(--sy,0s)}
+@keyframes ss2{
+  0%{opacity:0;transform:rotate(25deg) translateX(0)}
+  2%{opacity:1}
+  12%{opacity:0;transform:rotate(25deg) translateX(600px)}
+  100%{opacity:0;transform:rotate(25deg) translateX(600px)}
+}
+
+/* Grande planète bleue avec la photo dessus */
+#planet{
+  position:absolute;right:8%;top:12%;width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, #4a82f6 0%, #1d4ed8 35%, #0d1e56 70%, #030712 100%);
+  box-shadow:inset -35px -25px 40px rgba(0,0,0,0.85), 0 0 30px rgba(59,130,246,0.3);
+  animation:fp 6s ease-in-out infinite alternate;
+}
+@keyframes fp{from{transform:translateY(0)}to{transform:translateY(-16px)}}
+#ring{position:absolute;right:4%;top:18%;width:310px;height:85px;border-radius:50%;border:2px solid var(--ring);transform:rotateX(72deg);pointer-events:none;box-shadow:0 0 15px rgba(120,160,255,0.2)}
+#nebula{position:absolute;inset:-20%;border-radius:50%;background:radial-gradient(ellipse,var(--neb) 0%,transparent 70%);pointer-events:none}
+
+/* ── NAV ── */
+#nav-wrap{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:400}
+#nav{display:flex;align-items:center;background:var(--surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:.5px solid var(--border);border-radius:40px;padding:4px}
+#nt{display:flex;gap:2px}
+.nb{background:transparent;border:none;cursor:pointer;color:var(--text2);font-size:13px;padding:7px 16px;border-radius:32px;transition:all .25s;font-family:'DM Sans',sans-serif}
+.nb:hover{color:var(--text1);background:var(--surface)}
+.nb.on{color:var(--nav-on-tx);background:var(--nav-on);font-weight:500}
+
+/* ── MAIN ── */
+#app{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:90px 100px 50px;max-width:1150px}
+#tag{animation:ei .5s ease both;animation-delay:.1s;font-size:11px;letter-spacing:3px;color:var(--tag-c);text-transform:uppercase;margin-bottom:12px}
+#hl{animation:ei .5s ease both;animation-delay:.22s;font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,46px);font-weight:700;line-height:1.12;color:var(--text1);margin-bottom:8px}
+#hl span{color:var(--accent)}
+#sl{animation:ei .5s ease both;animation-delay:.34s;font-size:14px;color:var(--text2);max-width:550px;line-height:1.7;margin-bottom:30px}
+#cp{animation:ei .5s ease both;animation-delay:.46s;min-height:220px;max-width:950px;width:100%}
+#ds{animation:ei .5s ease both;animation-delay:.54s;display:flex;gap:7px;margin-top:24px}
+@keyframes ei{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.cp-anim{animation:fu .38s ease}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── CARDS & COMPONENTS ── */
+.section-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--text1);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.bio-block{font-size:14px;color:var(--text2);line-height:1.8;max-width:680px;margin-bottom:18px}
+.info-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
+.info-item{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2)}
+.info-item svg{width:15px;height:15px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{background:var(--pill-bg);border:.5px solid var(--pill-bd);color:var(--pill-tx);border-radius:20px;font-size:12px;padding:4px 13px;font-weight:500}
+.chip.gold{background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.35);color:var(--gold)}
+
+.hero-layout{display:flex;align-items:center;width:100%}
+
+/* CURRICULUM TABS & TABLES */
+.curr-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.curr-tab-btn{background:var(--surface);border:.5px solid var(--border);color:var(--text2);padding:6px 14px;border-radius:20px;font-size:12px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.curr-tab-btn.on,.curr-tab-btn:hover{background:var(--accent);color:var(--nav-on-tx);border-color:transparent;font-weight:500}
+
+.table-wrap{overflow-x:auto;border-radius:12px;border:.5px solid var(--card-bd);background:var(--card-bg);max-height:360px;overflow-y:auto}
+table.curr-table{width:100%;border-collapse:collapse;text-align:left;font-size:12px}
+table.curr-table th{background:rgba(122,180,255,.1);color:var(--accent);padding:10px 12px;font-family:'Syne',sans-serif;font-weight:600;position:sticky;top:0;backdrop-filter:blur(8px)}
+table.curr-table td{padding:9px 12px;border-bottom:.5px solid var(--card-bd);color:var(--text2)}
+table.curr-table tr:hover td{color:var(--text1);background:rgba(255,255,255,.02)}
+.sem-tag{background:rgba(122,180,255,.12);color:var(--accent);padding:2px 6px;border-radius:4px;font-weight:500;font-size:10px}
+
+/* PROJECTS & EXP */
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.proj-card{background:var(--card-bg);border:.5px solid var(--card-bd);border-radius:14px;padding:16px;transition:border-color .2s,transform .2s}
+.proj-card:hover{border-color:rgba(122,180,255,.3);transform:translateY(-2px)}
+.proj-card.featured{border-color:rgba(251,191,36,.3);background:rgba(251,191,36,.02)}
+.proj-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--text1);margin-bottom:4px}
+.proj-date{font-size:11px;color:var(--accent);margin-bottom:8px;letter-spacing:.5px}
+.proj-desc{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:10px}
+.proj-tech{display:flex;flex-wrap:wrap;gap:5px}
+.tech-tag{font-size:10px;background:rgba(122,180,255,.07);border:.5px solid rgba(122,180,255,.18);color:var(--text2);border-radius:10px;padding:2px 8px}
+
+/* SKILLS */
+.skill-group{margin-bottom:14px}
+.skill-label{font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;font-weight:600}
+.skill-chips{display:flex;flex-wrap:wrap;gap:6px}
+
+/* EDU */
+.edu-card{background:var(--card-bg);border:.5px solid var(--card-bd);border-radius:14px;padding:16px;margin-bottom:10px}
+.edu-school{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--text1)}
+.edu-degree{font-size:13px;color:var(--accent);margin:3px 0}
+.edu-date{font-size:11px;color:var(--text3);margin-bottom:6px}
+.edu-note{font-size:12px;color:var(--text2)}
+.edu-badge{display:inline-block;font-size:10px;background:rgba(251,191,36,.12);border:.5px solid rgba(251,191,36,.3);color:var(--gold);border-radius:12px;padding:2px 9px;margin-top:5px;font-weight:500}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.contact-card{background:var(--card-bg);border:.5px solid var(--card-bd);border-radius:14px;padding:14px;display:flex;gap:10px;align-items:flex-start}
+.contact-card svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;margin-top:2px}
+.contact-label{font-size:11px;color:var(--text3);margin-bottom:2px;text-transform:uppercase;letter-spacing:.8px}
+.contact-value{font-size:13px;color:var(--text1)}
+
+/* LANG */
+.lang-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+.lang-item{display:flex;align-items:center;gap:8px;background:var(--card-bg);border:.5px solid var(--card-bd);border-radius:12px;padding:8px 14px}
+.lang-name{font-size:13px;color:var(--text1);font-weight:500}
+.lang-level{font-size:11px;color:var(--text3)}
+.lang-bar{width:50px;height:3px;border-radius:3px;background:var(--card-bd);overflow:hidden;margin-top:3px}
+.lang-fill{height:100%;border-radius:3px;background:var(--accent)}
+
+
+/* Avatar : cadre planète + orbites, sous la grande planète à gauche */
+#avatar{position:fixed;right:calc(8% + 109px);top:calc(12% + 67px);width:190px;height:190px;z-index:350;display:flex;align-items:center;justify-content:center}
+.av-orbit{position:absolute;inset:8px;border-radius:50%;border:1.2px dashed rgba(122,180,255,.5);animation:rotOrb 18s linear infinite}
+.av-orbit::before{content:'';position:absolute;top:-4px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:#fff;box-shadow:0 0 8px var(--accent)}
+.av-orbit2{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(122,180,255,.28);animation:rotOrbRev 26s linear infinite}
+.av-orbit2::before{content:'';position:absolute;bottom:-3px;left:50%;transform:translateX(-50%);width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 6px var(--accent)}
+@keyframes rotOrb{to{transform:rotate(360deg)}}
+@keyframes rotOrbRev{to{transform:rotate(-360deg)}}
+.av-sphere{position:relative;width:142px;height:142px;border-radius:50%;overflow:hidden;border:2px solid rgba(122,180,255,.8);background:transparent;transition:transform .3s}
+.av-sphere:hover{transform:scale(1.07)}
+.av-sphere img{width:100%;height:100%;object-fit:cover;object-position:center 15%}
+
+/* DOTS */
+.d{width:6px;height:6px;border-radius:50%;background:var(--text3);transition:all .3s;cursor:pointer}
+.d.on{background:var(--accent);width:20px;border-radius:4px}
+
+@media(max-width:768px){
+  #app{padding:80px 20px 40px}
+  #toolbar{top:10px;right:10px;gap:5px}
+  .tt-opt{font-size:11px;padding:5px 9px}
+  .nb{padding:5px 10px;font-size:11px}
+  .side-arrow{width:50px}
+  .proj-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  #planet{width:130px;height:130px;right:4%;top:9%;opacity:.55}
+  #ring{display:none}
+  #avatar{width:96px;height:96px;right:calc(4% + 80px);top:calc(9% + 100px)}
+  .av-sphere{width:70px;height:70px}
+}
+</style>
+</head>
+<body>
+
+<button class="side-arrow left" id="arrow-left" aria-label="Section précédente">
+  <div class="arrow-btn"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></div>
+</button>
+<button class="side-arrow right" id="arrow-right" aria-label="Section suivante">
+  <div class="arrow-btn"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div>
+</button>
+<div class="hover-zone left" id="zone-left"></div>
+<div class="hover-zone right" id="zone-right"></div>
+
+<div id="toolbar">
+  <div id="theme-toggle" role="group" aria-label="Thème">
+    <button class="tt-opt on" data-t="dark">🌙 Dark</button>
+    <button class="tt-opt"    data-t="light">☀️ Light</button>
+  </div>
+</div>
+
+<div id="nav-wrap">
+  <nav id="nav" aria-label="Sections">
+    <div id="nt">
+      <button class="nb on" data-i="0">Home</button>
+      <button class="nb"    data-i="1">About</button>
+      <button class="nb"    data-i="2">Curriculum</button>
+      <button class="nb"    data-i="3">Projets</button>
+      <button class="nb"    data-i="4">Skills</button>
+      <button class="nb"    data-i="5">Contact</button>
+    </div>
+  </nav>
+</div>
+
+<div id="scene">
+  <div id="nebula"></div>
+  <div id="planet"></div>
+  <div id="ring"></div>
+</div>
+
+<div id="avatar" title="Insaf Jawahdou">
+  <div class="av-orbit"></div>
+  <div class="av-orbit2"></div>
+  <div class="av-sphere"><img src="icon.png" alt="Insaf Jawahdou"></div>
+</div>
+
+<div id="app">
+  <div id="tag">Portfolio Insaf Jawahdou · 2025 — 2026</div>
+  <div id="hl">Insaf<br><span>Jawahdou</span></div>
+  <div id="sl">Élève Ingénieure Génie Logiciel & Data (GLID) · Majorante de Promotion (3 années consécutives) · Machine Learning & Distribué</div>
+  <div id="cp"></div>
+  <div id="ds"></div>
+</div>
+
+<script>
+var currentIdx = 0;
+var activeCurrTab = 'prepa1';
+
+var panels = [
+  // 0 — HOME
+  { render: function(c) {
+    c.innerHTML =
+      '<div class="hero-layout">' +
+        '<div>' +
+          '<div class="section-title">Bienvenue dans mon univers 🚀</div>' +
+          '<div class="bio-block">Étudiante ingénieure en Génie Logiciel & Data à la Faculté des Sciences de Bizerte, classée <strong style="color:var(--gold)">1ère de promotion sur 3 années consécutives</strong>. Spécialisée en Machine Learning (NLP, CV), développement full-stack et architectures distribuées. Expérience en IA embarquée sur Nanosatellite au Sup\'Com.</div>' +
+          '<div class="info-row">' +
+            '<span class="info-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Tunis / Bizerte, Tunisie</span>' +
+            '<span class="info-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jawahdouinsaf2005@gmail.com</span>' +
+            '<span class="info-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+216 56 277 264</span>' +
+          '</div>' +
+          '<div class="chips">' +
+            '<span class="chip gold">⭐ Major de promotion (3 ans)</span>' +
+            '<span class="chip">Recherche IA & IoT</span>' +
+            '<span class="chip">Full Stack Java/Python</span>' +
+            '<span class="chip">Kafka & RabbitMQ</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+  }},
+
+  // 1 — ABOUT
+  { render: function(c) {
+    function mkLang(n,l,p){
+      return '<div class="lang-item"><div><div class="lang-name">'+n+'</div><div class="lang-level">'+l+'</div><div class="lang-bar"><div class="lang-fill" style="width:'+p+'%"></div></div></div></div>';
+    }
+    c.innerHTML =
+      '<div class="section-title"><i class="fas fa-graduation-cap" style="color:var(--accent)"></i> Parcours & Ambitions</div>' +
+      '<div class="edu-card">' +
+        '<div class="edu-school">Faculté des Sciences de Bizerte — Université de Carthage</div>' +
+        '<div class="edu-degree">Cycle Ingénieur — Génie Logiciel & Data (GLID)</div>' +
+        '<div class="edu-date">Sept. 2025 — Présent · Bizerte, Tunisie</div>' +
+        '<div class="edu-note">Formations avancées en Deep Learning, Big Data, Architectures Réparties, MLOps et HPC.</div>' +
+        '<div class="edu-badge">🥇 1ère de promotion en 1ère année d\'ingénieur</div>' +
+      '</div>' +
+
+      '<div class="edu-card">' +
+        '<div class="edu-school">Faculté des Sciences de Bizerte — Université de Carthage</div>' +
+        '<div class="edu-degree">Cycle Préparatoire Intégré (MPI : Math, Physique, Informatique)</div>' +
+        '<div class="edu-date">Sept. 2023 — Juin 2025 · Bizerte, Tunisie</div>' +
+        '<div class="edu-note">Maitrise approfondie des fondamentaux mathématiques, algorithmiques et physiques.</div>' +
+        '<div class="edu-badge">🥇 Majorante de promotion 2 années consécutives (2023/24 & 2024/25)</div>' +
+      '</div>' +
+
+      '<div style="margin-top:16px;font-size:13px;color:var(--accent);font-weight:600;margin-bottom:8px">LANGUES PARLÉES</div>' +
+      '<div class="lang-row">' +
+        mkLang("🇹🇳 Arabe","Maternelle","100") +
+        mkLang("🇫🇷 Français","Courant (C1)","85") +
+        mkLang("🇬🇧 Anglais","Intermédiaire (B1)","60") +
+        mkLang("🇪🇸 Espagnol","Débutant (A1)","25") +
+      '</div>';
+  }},
+
+  // 2 — CURRICULUM
+  { render: function(c) {
+    c.innerHTML =
+      '<div class="section-title"><i class="fas fa-book-open" style="color:var(--accent)"></i> Curriculum Académique Détaillé</div>' +
+      '<div class="curr-tabs">' +
+        '<button class="curr-tab-btn '+(activeCurrTab==='prepa1'?'on':'')+'" onclick="switchCurrTab(\'prepa1\')">MPI 1 (2023-2024)</button>' +
+        '<button class="curr-tab-btn '+(activeCurrTab==='prepa2'?'on':'')+'" onclick="switchCurrTab(\'prepa2\')">MPI 2 (2024-2025)</button>' +
+        '<button class="curr-tab-btn '+(activeCurrTab==='ing1'?'on':'')+'" onclick="switchCurrTab(\'ing1\')">Ingénieur GLID 1 (2025-2026)</button>' +
+        '<button class="curr-tab-btn '+(activeCurrTab==='ing2'?'on':'')+'" onclick="switchCurrTab(\'ing2\')">Ingénieur GLID 2 (2026-2027)</button>' +
+      '</div>' +
+      '<div id="currTableContainer"></div>';
+
+    renderCurrTable(activeCurrTab);
+  }},
+
+  // 3 — PROJETS
+  { render: function(c) {
+    var exp =
+      '<div class="proj-card featured" style="margin-bottom:18px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px">' +
+          '<div class="proj-name" style="color:var(--gold);font-size:15px"><i class="fas fa-satellite"></i> Stage Nanosatellite & Agent IA (IoT Lab)</div>' +
+          '<span class="sem-tag">Juil. — Août 2026</span>' +
+        '</div>' +
+        '<div class="proj-date">Sup\'Com — École Supérieure des Communications de Tunis</div>' +
+        '<div class="proj-desc">Intégration d\'un agent d\'IA embarqué pour le filtrage et traitement intelligent d\'images sur nanosatellite. Application avancée de Computer Vision en environnement spatial contraint.</div>' +
+        '<div class="proj-tech"><span class="tech-tag">Python</span><span class="tech-tag">Computer Vision</span><span class="tech-tag">AI / Deep Learning</span><span class="tech-tag">IoT Spatial</span></div>' +
+      '</div>';
+
+    var projects = [
+      { name:"E-Commerce Pet Shop", date:"Avril 2026", desc:"Plateforme web MVC complète d'achat en ligne : gestion produits, commandes et utilisateurs.", tech:["Java EE","JSP","JSTL","MVC"] },
+      { name:"Tests Logiciels — Monoprix TN", date:"2025–2026", desc:"Rapport complet de tests assistés par IA : tests fonctionnels, automatisés avec Selenium, sécurité OWASP ZAP et audit Lighthouse.", tech:["Selenium","Python","OWASP ZAP","Claude AI"] },
+      { name:"Détection de Sarcasme (NLP)", date:"Déc. 2025", desc:"Classification de texte sur jeu de données très déséquilibré. Score F1 atteint : 0.42.", tech:["Python","scikit-learn","NLP","Deep Learning"] },
+      { name:"Reconnaissance d'Émotions (CV)", date:"Déc. 2025", desc:"Système de reconnaissance faciale des émotions en temps réel.", tech:["Python","OpenCV","Deep Learning"] },
+      { name:"Service Web SOAP & Théorie des Graphes", date:"Mar. 2025", desc:"Serveur SOAP Java EE, client Python (Tkinter GUI), algorithmes de parcours/analyse de graphes.", tech:["Java EE","SOAP","Python","Tkinter","Postman"] },
+      { name:"Applications de Gestion (Auto-école & Radiologie)", date:"2024–2025", desc:"Deux applications Java : plannings/élèves (JavaFX) et dossiers médicaux (MVC, MySQL).", tech:["Java","JavaFX","MySQL","JSON"] },
+      { name:"Mind Room — Plateforme Éducative", date:"Oct. 2025", desc:"Application éducative facilitant l'accès aux ressources et le soutien étudiants.", tech:["Figma","UX/UI","React","Node.js"] },
+      { name:"Flowshop — E-Commerce Fleurs", date:"2023", desc:"Site e-commerce de vente de fleurs avec programme de fidélité Blossom points.", tech:["Wix","Canva"] }
+    ];
+
+    var html = '<div class="section-title"><i class="fas fa-laptop-code" style="color:var(--accent)"></i> Expériences & Projets</div>' + exp + '<div class="proj-grid">';
+    projects.forEach(function(p){
+      html += '<div class="proj-card"><div class="proj-name">'+p.name+'</div><div class="proj-date">'+p.date+'</div><div class="proj-desc">'+p.desc+'</div><div class="proj-tech">'+p.tech.map(function(t){return'<span class="tech-tag">'+t+'</span>'}).join('')+'</div></div>';
+    });
+    html += '</div>';
+    c.innerHTML = html;
+  }},
+
+  // 4 — SKILLS
+  { render: function(c) {
+    var groups = [
+      { label:"Langages de Programmation", skills:["Python","Java","C","C++","Go","Prolog"] },
+      { label:"Intelligence Artificielle & Data", skills:["scikit-learn","OpenCV","NLP","Computer Vision","Deep Learning","Data Mining"] },
+      { label:"Systèmes Distribués & Reseaux", skills:["Apache Kafka","RabbitMQ","Programmation Concurrente (Go/Java)","Certifié CCNA 1 & CCNA 2"] },
+      { label:"Développement Web & Backend", skills:["Java EE (JSP, JSF, JSTL)","JavaFX","REST","SOAP Web Services","MVC"] },
+      { label:"Bases de données & Formatage", skills:["MySQL","JSON","XML","NoSQL"] },
+      { label:"Outils & Quality Assurance", skills:["Git","Postman","Selenium","OWASP ZAP","Figma","Lighthouse"] },
+      { label:"Soft Skills", skills:["Leadership","Résolution de problèmes complexes","Esprit de recherche","Majorante de promotion"] }
+    ];
+    var html = '<div class="section-title"><i class="fas fa-cogs" style="color:var(--accent)"></i> Compétences Techniques</div>';
+    groups.forEach(function(g){
+      html += '<div class="skill-group"><div class="skill-label">'+g.label+'</div><div class="skill-chips">'+g.skills.map(function(s){return'<span class="chip">'+s+'</span>'}).join('')+'</div></div>';
+    });
+    c.innerHTML = html;
+  }},
+
+  // 5 — CONTACT
+  { render: function(c) {
+    function mkContact(svg,label,value){
+      return '<div class="contact-card"><svg viewBox="0 0 24 24">'+svg+'</svg><div><div class="contact-label">'+label+'</div><div class="contact-value">'+value+'</div></div></div>';
+    }
+    c.innerHTML =
+      '<div class="section-title"><i class="fas fa-paper-plane" style="color:var(--accent)"></i> Me Contacter</div>' +
+      '<div class="bio-block">Disponible pour des opportunités de recherche, stages, ou collaborations sur des projets IA et ingénierie logicielle.</div>' +
+      '<div class="contact-grid">' +
+        mkContact('<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>','Email','jawahdouinsaf2005@gmail.com') +
+        mkContact('<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>','Téléphone','+216 56 277 264') +
+        mkContact('<path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>','LinkedIn','insaf-jawahdou-411880311') +
+        mkContact('<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>','GitHub','github.com/nassouf') +
+      '</div>' +
+      '<div class="chips" style="margin-top:20px">' +
+        '<span class="chip gold">⭐ Major de promotion</span>' +
+        '<span class="chip">Open to research & internships</span>' +
+        '<span class="chip">Tunis / Bizerte, Tunisie</span>' +
+      '</div>';
+  }}
+];
+
+function switchCurrTab(tab){
+  activeCurrTab = tab;
+  document.querySelectorAll('.curr-tab-btn').forEach(function(b){
+    b.classList.toggle('on', b.getAttribute('onclick').indexOf(tab) !== -1);
+  });
+  renderCurrTable(tab);
+}
+
+function renderCurrTable(tab){
+  var container = document.getElementById('currTableContainer');
+  if(!container) return;
+
+  var data = {
+    prepa1: [
+      { sem:"Semestre 1", ue:"UE11 Mathématiques 1", modules:"Algèbre I, Analyse I" },
+      { sem:"Semestre 1", ue:"UE12 Informatique 1", modules:"Algo & Struct. Données, Atelier Prog I, BD 1" },
+      { sem:"Semestre 1", ue:"UE13/14 Physique-Techno", modules:"Optique, Syst. Logiques, Circuits Élec., Électrostatique" },
+      { sem:"Semestre 2", ue:"UE21 Mathématiques 2", modules:"Algèbre II, Analyse II" },
+      { sem:"Semestre 2", ue:"UE22/23 Info & Prog", modules:"Algo & Complexité, Atelier Prog 2, SO1, Python"},
+      { sem:"Semestre 2", ue:"UE24 Physique 2", modules:"Électronique, Électromagnétisme, Traitement de Signal"}
+    ],
+    prepa2: [
+      { sem:"Semestre 3", ue:"UE31 Mathématiques 3", modules:"Algèbre III, Analyse III" },
+      { sem:"Semestre 3", ue:"UE32/33 Info & Prog 2", modules:"Arch. Calculateurs, Théorie Langages, Prog OO Java, Atelier C++" },
+      { sem:"Semestre 3", ue:"UE34 Système & Réseaux", modules:"Système d'Exploitation 2, Fondements Réseaux, Transmission Données" },
+      { sem:"Semestre 4", ue:"UE41 Mathématiques 4", modules:"Probabilités & Statistiques, Théorie des Graphes"},
+      { sem:"Semestre 4", ue:"UE42/43 Prog & Web", modules:"Java 2, OO Design, Logique Formelle, Compilation, Prog Web, BD Avancée" },
+      { sem:"Semestre 4", ue:"UE44 Réseaux & Syst.", modules:"Technologies Multimédia, Services Réseaux" }
+    ],
+    ing1: [
+      { sem:"Semestre 1", ue:"Maths & Signaux", modules:"Recherche Opérationnelle, Théorie de l'Information, Signaux & Images" },
+      { sem:"Semestre 1", ue:"Info & Distribué", modules:"Python Avancé, IHM, Algo Avancé, Fondements Systèmes Distribués"},
+      { sem:"Semestre 1", ue:"IA & IoT & Sécurité", modules:"Apprentissage Automatique 1, Sécurité 1, Réseaux 2"},
+      { sem:"Semestre 2", ue:"Systèmes & Modèles", modules:"Optimisation, Syst. Événements Discrets, Test Logiciel, Prog Logique, Linux 1" },
+      { sem:"Semestre 2", ue:"Sémantique & IA", modules:"Sémantique Langages, Middleware Réparti, Virtualisation, Fondements IA, Services Web" }
+    ],
+    ing2: [
+      { sem:"Semestre 3", ue:"AI & Data Science", modules:"Geographical Information System, BI, Statistical Learning, Formal Methods, ML" },
+      { sem:"Semestre 3", ue:"EAD & Sécurité", modules:"BD NoSQL, Architectures Réparties, Cybersecurity, Sécurité Réseaux, MLOps, IoT 1, Advanced Web" }
+    ]
+  };
+
+  var rows = data[tab] || [];
+  var tHtml = '<div class="table-wrap"><table class="curr-table"><thead><tr><th>Période</th><th>Unité d\'Enseignement (UE)</th><th>Modules / Matières</th></tr></thead><tbody>';
+
+  rows.forEach(function(r){
+    tHtml += '<tr><td><span class="sem-tag">' + r.sem + '</span></td><td style="font-weight:600;color:var(--text1)">' + r.ue + '</td><td>' + r.modules + '</td></tr>';
+  });
+
+  tHtml += '</tbody></table></div>';
+  container.innerHTML = tHtml;
+}
+
+function showPanel(idx){
+  if(idx < 0) idx = 0;
+  if(idx >= panels.length) idx = panels.length - 1;
+  currentIdx = idx;
+
+  var cp = document.getElementById('cp');
+  cp.className = '';
+  void cp.offsetWidth;
+  cp.className = 'cp-anim';
+
+  panels[currentIdx].render(cp);
+
+  document.querySelectorAll('.nb').forEach(function(btn, i){
+    btn.classList.toggle('on', i === currentIdx);
+  });
+
+  document.querySelectorAll('.d').forEach(function(dot, i){
+    dot.classList.toggle('on', i === currentIdx);
+  });
+
+  var leftArrow = document.getElementById('arrow-left');
+  var rightArrow = document.getElementById('arrow-right');
+  if(leftArrow) leftArrow.classList.toggle('visible', currentIdx > 0);
+  if(rightArrow) rightArrow.classList.toggle('visible', currentIdx < panels.length - 1);
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+  var ds = document.getElementById('ds');
+  ds.innerHTML = '';
+  panels.forEach(function(_, idx){
+    var dot = document.createElement('div');
+    dot.className = 'd' + (idx === 0 ? ' on' : '');
+    dot.onclick = function(){ showPanel(idx); };
+    ds.appendChild(dot);
+  });
+
+  document.querySelectorAll('.nb').forEach(function(btn){
+    btn.onclick = function(){
+      showPanel(parseInt(this.getAttribute('data-i'), 10));
+    };
+  });
+
+  var leftArrow = document.getElementById('arrow-left');
+  var rightArrow = document.getElementById('arrow-right');
+  if(leftArrow) leftArrow.onclick = function(){ showPanel(currentIdx - 1); };
+  if(rightArrow) rightArrow.onclick = function(){ showPanel(currentIdx + 1); };
+
+  var zoneLeft = document.getElementById('zone-left');
+  var zoneRight = document.getElementById('zone-right');
+  if(zoneLeft && leftArrow){
+    zoneLeft.onmouseenter = function(){ if(currentIdx > 0) leftArrow.classList.add('visible'); };
+    zoneLeft.onmouseleave = function(){ leftArrow.classList.remove('visible'); };
+  }
+  if(zoneRight && rightArrow){
+    zoneRight.onmouseenter = function(){ if(currentIdx < panels.length - 1) rightArrow.classList.add('visible'); };
+    zoneRight.onmouseleave = function(){ rightArrow.classList.remove('visible'); };
+  }
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowLeft') showPanel(currentIdx - 1);
+    if(e.key === 'ArrowRight') showPanel(currentIdx + 1);
+  });
+
+  document.querySelectorAll('.tt-opt').forEach(function(btn){
+    btn.onclick = function(){
+      document.querySelectorAll('.tt-opt').forEach(function(b){ b.classList.remove('on'); });
+      this.classList.add('on');
+      document.documentElement.setAttribute('data-theme', this.getAttribute('data-t'));
+    };
+  });
+
+  var scene = document.getElementById('scene');
+  if(scene){
+    for(var i = 0; i < 50; i++){
+      var star = document.createElement('div');
+      star.className = 'star';
+      var sz = (Math.random() * 2 + 1) + 'px';
+      star.style.width = sz;
+      star.style.height = sz;
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.setProperty('--d', (Math.random() * 3 + 2) + 's');
+      star.style.setProperty('--dl', (Math.random() * 3) + 's');
+      star.style.setProperty('--a1', (Math.random() * 0.3 + 0.1).toFixed(2));
+      star.style.setProperty('--a2', (Math.random() * 0.5 + 0.5).toFixed(2));
+      scene.appendChild(star);
+    }
+    // Étoiles filantes
+    for(var j = 0; j < 8; j++){
+      var sh = document.createElement('div');
+      sh.className = 'shoot';
+      sh.style.top = (Math.random() * 60) + '%';
+      sh.style.left = (Math.random() * 80) + '%';
+      sh.style.setProperty('--sd', (Math.random() * 5 + 6) + 's');
+      sh.style.setProperty('--sy', (Math.random() * 8) + 's');
+      scene.appendChild(sh);
+    }
+  }
+
+  showPanel(0);
+});
+</script>
+</body>
+</html>
