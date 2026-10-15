@@ -33,7 +33,7 @@ html,body{width:100%;min-height:100vh}
 
 body { background:var(--bg); font-family:'DM Sans',sans-serif; color:var(--text1); transition:background .4s,color .4s; overflow-x:hidden; }
 
-/* ── SIDE ARROWS ── */
+/* ── FLÈCHES LATÉRALES ── */
 .side-arrow {
   position:fixed; top:0; height:100vh; width:70px; z-index:300;
   display:flex; align-items:center; justify-content:center;
@@ -55,7 +55,7 @@ body { background:var(--bg); font-family:'DM Sans',sans-serif; color:var(--text1
 .hover-zone{position:fixed;top:0;height:100vh;width:80px;z-index:299}
 .hover-zone.left{left:0} .hover-zone.right{right:0}
 
-/* ── TOOLBAR ── */
+/* ── BARRE D'OUTILS ── */
 #toolbar{position:fixed;top:20px;right:24px;z-index:400;display:flex;gap:8px;align-items:center}
 #theme-toggle{display:flex;align-items:center;background:var(--surface);border:.5px solid var(--border);border-radius:40px;padding:3px}
 .tt-opt{display:flex;align-items:center;gap:5px;font-size:12px;font-family:'DM Sans',sans-serif;color:var(--text2);padding:5px 12px;border-radius:32px;cursor:pointer;border:none;background:transparent;transition:all .2s;white-space:nowrap}
@@ -86,7 +86,7 @@ body { background:var(--bg); font-family:'DM Sans',sans-serif; color:var(--text1
 #ring{position:absolute;right:4%;top:18%;width:310px;height:85px;border-radius:50%;border:2px solid var(--ring);transform:rotateX(72deg);pointer-events:none;box-shadow:0 0 15px rgba(120,160,255,0.2)}
 #nebula{position:absolute;inset:-20%;border-radius:50%;background:radial-gradient(ellipse,var(--neb) 0%,transparent 70%);pointer-events:none}
 
-/* ── NAV ── */
+/* ── NAVIGATION ── */
 #nav-wrap{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:400}
 #nav{display:flex;align-items:center;background:var(--surface);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:.5px solid var(--border);border-radius:40px;padding:4px}
 #nt{display:flex;gap:2px}
@@ -94,7 +94,7 @@ body { background:var(--bg); font-family:'DM Sans',sans-serif; color:var(--text1
 .nb:hover{color:var(--text1);background:var(--surface)}
 .nb.on{color:var(--nav-on-tx);background:var(--nav-on);font-weight:500}
 
-/* ── MAIN ── */
+/* ── CONTENU PRINCIPAL ── */
 #app{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:90px 100px 50px;max-width:1150px}
 #tag{animation:ei .5s ease both;animation-delay:.1s;font-size:11px;letter-spacing:3px;color:var(--tag-c);text-transform:uppercase;margin-bottom:12px}
 #hl{animation:ei .5s ease both;animation-delay:.22s;font-family:'Syne',sans-serif;font-size:clamp(28px,4vw,46px);font-weight:700;line-height:1.12;color:var(--text1);margin-bottom:8px}
@@ -106,7 +106,7 @@ body { background:var(--bg); font-family:'DM Sans',sans-serif; color:var(--text1
 .cp-anim{animation:fu .38s ease}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── CARDS & COMPONENTS ── */
+/* ── CARTES & COMPOSANTS ── */
 .section-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:700;color:var(--text1);margin-bottom:18px;display:flex;align-items:center;gap:10px}
 .bio-block{font-size:14px;color:var(--text2);line-height:1.8;max-width:680px;margin-bottom:18px}
 .info-row{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:12px}
@@ -118,7 +118,7 @@ body { background:var(--bg); font-family:'DM Sans',sans-serif; color:var(--text1
 
 .hero-layout{display:flex;align-items:center;width:100%}
 
-/* CURRICULUM TABS & TABLES */
+/* CURRICULUM : ONGLETS & TABLEAUX */
 .curr-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
 .curr-tab-btn{background:var(--surface);border:.5px solid var(--border);color:var(--text2);padding:6px 14px;border-radius:20px;font-size:12px;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
 .curr-tab-btn.on,.curr-tab-btn:hover{background:var(--accent);color:var(--nav-on-tx);border-color:transparent;font-weight:500}
@@ -130,7 +130,7 @@ table.curr-table td{padding:9px 12px;border-bottom:.5px solid var(--card-bd);col
 table.curr-table tr:hover td{color:var(--text1);background:rgba(255,255,255,.02)}
 .sem-tag{background:rgba(122,180,255,.12);color:var(--accent);padding:2px 6px;border-radius:4px;font-weight:500;font-size:10px}
 
-/* PROJECTS & EXP */
+/* PROJETS & EXPÉRIENCE */
 .proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
 .proj-card{background:var(--card-bg);border:.5px solid var(--card-bd);border-radius:14px;padding:16px;transition:border-color .2s,transform .2s}
 .proj-card:hover{border-color:rgba(122,180,255,.3);transform:translateY(-2px)}
@@ -141,12 +141,12 @@ table.curr-table tr:hover td{color:var(--text1);background:rgba(255,255,255,.02)
 .proj-tech{display:flex;flex-wrap:wrap;gap:5px}
 .tech-tag{font-size:10px;background:rgba(122,180,255,.07);border:.5px solid rgba(122,180,255,.18);color:var(--text2);border-radius:10px;padding:2px 8px}
 
-/* SKILLS */
+/* COMPÉTENCES */
 .skill-group{margin-bottom:14px}
 .skill-label{font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px;font-weight:600}
 .skill-chips{display:flex;flex-wrap:wrap;gap:6px}
 
-/* EDU */
+/* FORMATION */
 .edu-card{background:var(--card-bg);border:.5px solid var(--card-bd);border-radius:14px;padding:16px;margin-bottom:10px}
 .edu-school{font-family:'Syne',sans-serif;font-size:14px;font-weight:600;color:var(--text1)}
 .edu-degree{font-size:13px;color:var(--accent);margin:3px 0}
@@ -161,7 +161,7 @@ table.curr-table tr:hover td{color:var(--text1);background:rgba(255,255,255,.02)
 .contact-label{font-size:11px;color:var(--text3);margin-bottom:2px;text-transform:uppercase;letter-spacing:.8px}
 .contact-value{font-size:13px;color:var(--text1)}
 
-/* LANG */
+/* LANGUES */
 .lang-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
 .lang-item{display:flex;align-items:center;gap:8px;background:var(--card-bg);border:.5px solid var(--card-bd);border-radius:12px;padding:8px 14px}
 .lang-name{font-size:13px;color:var(--text1);font-weight:500}
@@ -182,7 +182,7 @@ table.curr-table tr:hover td{color:var(--text1);background:rgba(255,255,255,.02)
 .av-sphere:hover{transform:scale(1.07)}
 .av-sphere img{width:100%;height:100%;object-fit:cover;object-position:center 15%}
 
-/* DOTS */
+/* POINTS DE NAVIGATION */
 .d{width:6px;height:6px;border-radius:50%;background:var(--text3);transition:all .3s;cursor:pointer}
 .d.on{background:var(--accent);width:20px;border-radius:4px}
 
@@ -209,24 +209,22 @@ table.curr-table tr:hover td{color:var(--text1);background:rgba(255,255,255,.02)
 <button class="side-arrow right" id="arrow-right" aria-label="Section suivante">
   <div class="arrow-btn"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></div>
 </button>
-<div class="hover-zone left" id="zone-left"></div>
-<div class="hover-zone right" id="zone-right"></div>
 
 <div id="toolbar">
   <div id="theme-toggle" role="group" aria-label="Thème">
-    <button class="tt-opt on" data-t="dark">🌙 Dark</button>
-    <button class="tt-opt"    data-t="light">☀️ Light</button>
+    <button class="tt-opt on" data-t="dark">🌙 Sombre</button>
+    <button class="tt-opt"    data-t="light">☀️ Clair</button>
   </div>
 </div>
 
 <div id="nav-wrap">
   <nav id="nav" aria-label="Sections">
     <div id="nt">
-      <button class="nb on" data-i="0">Home</button>
-      <button class="nb"    data-i="1">About</button>
+      <button class="nb on" data-i="0">Accueil</button>
+      <button class="nb"    data-i="1">À propos</button>
       <button class="nb"    data-i="2">Curriculum</button>
       <button class="nb"    data-i="3">Projets</button>
-      <button class="nb"    data-i="4">Skills</button>
+      <button class="nb"    data-i="4">Compétences</button>
       <button class="nb"    data-i="5">Contact</button>
     </div>
   </nav>
@@ -245,32 +243,31 @@ table.curr-table tr:hover td{color:var(--text1);background:rgba(255,255,255,.02)
 </div>
 
 <div id="app">
-  <div id="tag">Portfolio Insaf Jawahdou · 2025 — 2026</div>
+  <div id="tag">Portfolio Insaf Jawahdou · 2026 — 2027</div>
   <div id="hl">Insaf<br><span>Jawahdou</span></div>
-  <div id="sl">Élève Ingénieure Génie Logiciel & Data (GLID) · Majorante de Promotion (3 années consécutives) · Machine Learning & Distribué</div>
+  <div id="sl">Élève Ingénieure Génie Logiciel & Data (GLID) — 2ème année</div>
   <div id="cp"></div>
   <div id="ds"></div>
 </div>
 
 <script>
 var currentIdx = 0;
-var activeCurrTab = 'prepa1';
+var activeCurrTab = 'ing2';
 
 var panels = [
-  // 0 — HOME
+  // 0 — ACCUEIL
   { render: function(c) {
     c.innerHTML =
       '<div class="hero-layout">' +
         '<div>' +
           '<div class="section-title">Bienvenue dans mon univers 🚀</div>' +
-          '<div class="bio-block">Étudiante ingénieure en Génie Logiciel & Data à la Faculté des Sciences de Bizerte, classée <strong style="color:var(--gold)">1ère de promotion sur 3 années consécutives</strong>. Spécialisée en Machine Learning (NLP, CV), développement full-stack et architectures distribuées. Expérience en IA embarquée sur Nanosatellite au Sup\'Com.</div>' +
+          '<div class="bio-block">Élève ingénieure en <strong>2ème année</strong> du cycle Génie Logiciel & Data à la Faculté des Sciences de Bizerte, classée <strong style="color:var(--gold)">major de promotion pendant trois années consécutives</strong>. Spécialisée en Apprentissage Automatique (TALN, vision par ordinateur), développement full-stack et architectures distribuées. Expérience en IA embarquée sur nanosatellite à Sup\'Com.</div>' +
           '<div class="info-row">' +
             '<span class="info-item"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>Tunis / Bizerte, Tunisie</span>' +
             '<span class="info-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>jawahdouinsaf2005@gmail.com</span>' +
             '<span class="info-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+216 56 277 264</span>' +
           '</div>' +
           '<div class="chips">' +
-            '<span class="chip gold">⭐ Major de promotion (3 ans)</span>' +
             '<span class="chip">Recherche IA & IoT</span>' +
             '<span class="chip">Full Stack Java/Python</span>' +
             '<span class="chip">Kafka & RabbitMQ</span>' +
@@ -279,7 +276,7 @@ var panels = [
       '</div>';
   }},
 
-  // 1 — ABOUT
+  // 1 — À PROPOS
   { render: function(c) {
     function mkLang(n,l,p){
       return '<div class="lang-item"><div><div class="lang-name">'+n+'</div><div class="lang-level">'+l+'</div><div class="lang-bar"><div class="lang-fill" style="width:'+p+'%"></div></div></div></div>';
@@ -290,23 +287,22 @@ var panels = [
         '<div class="edu-school">Faculté des Sciences de Bizerte — Université de Carthage</div>' +
         '<div class="edu-degree">Cycle Ingénieur — Génie Logiciel & Data (GLID)</div>' +
         '<div class="edu-date">Sept. 2025 — Présent · Bizerte, Tunisie</div>' +
-        '<div class="edu-note">Formations avancées en Deep Learning, Big Data, Architectures Réparties, MLOps et HPC.</div>' +
-        '<div class="edu-badge">🥇 1ère de promotion en 1ère année d\'ingénieur</div>' +
+        '<div class="edu-note">Formations avancées en Apprentissage Profond, Big Data, Architectures Réparties, MLOps et Calcul Haute Performance.</div>' +
+        '<div class="edu-badge">🎓 Actuellement en 2ème année du cycle ingénieur</div>' +
       '</div>' +
 
       '<div class="edu-card">' +
         '<div class="edu-school">Faculté des Sciences de Bizerte — Université de Carthage</div>' +
-        '<div class="edu-degree">Cycle Préparatoire Intégré (MPI : Math, Physique, Informatique)</div>' +
+        '<div class="edu-degree">Cycle Préparatoire Intégré (MI : Mathématiques, Informatique)</div>' +
         '<div class="edu-date">Sept. 2023 — Juin 2025 · Bizerte, Tunisie</div>' +
-        '<div class="edu-note">Maitrise approfondie des fondamentaux mathématiques, algorithmiques et physiques.</div>' +
-        '<div class="edu-badge">🥇 Majorante de promotion 2 années consécutives (2023/24 & 2024/25)</div>' +
+        '<div class="edu-note">Maîtrise approfondie des fondamentaux mathématiques, algorithmiques et physiques.</div>' +
       '</div>' +
 
       '<div style="margin-top:16px;font-size:13px;color:var(--accent);font-weight:600;margin-bottom:8px">LANGUES PARLÉES</div>' +
       '<div class="lang-row">' +
-        mkLang("🇹🇳 Arabe","Maternelle","100") +
+        mkLang("🇹🇳 Arabe","Langue maternelle","100") +
         mkLang("🇫🇷 Français","Courant (C1)","85") +
-        mkLang("🇬🇧 Anglais","Intermédiaire (B1)","60") +
+        mkLang("🇬🇧 Anglais","Intermédiaire avancé (B2)","60") +
         mkLang("🇪🇸 Espagnol","Débutant (A1)","25") +
       '</div>';
   }},
@@ -316,8 +312,8 @@ var panels = [
     c.innerHTML =
       '<div class="section-title"><i class="fas fa-book-open" style="color:var(--accent)"></i> Curriculum Académique Détaillé</div>' +
       '<div class="curr-tabs">' +
-        '<button class="curr-tab-btn '+(activeCurrTab==='prepa1'?'on':'')+'" onclick="switchCurrTab(\'prepa1\')">MPI 1 (2023-2024)</button>' +
-        '<button class="curr-tab-btn '+(activeCurrTab==='prepa2'?'on':'')+'" onclick="switchCurrTab(\'prepa2\')">MPI 2 (2024-2025)</button>' +
+        '<button class="curr-tab-btn '+(activeCurrTab==='prepa1'?'on':'')+'" onclick="switchCurrTab(\'prepa1\')">MI 1 (2023-2024)</button>' +
+        '<button class="curr-tab-btn '+(activeCurrTab==='prepa2'?'on':'')+'" onclick="switchCurrTab(\'prepa2\')">MI 2 (2024-2025)</button>' +
         '<button class="curr-tab-btn '+(activeCurrTab==='ing1'?'on':'')+'" onclick="switchCurrTab(\'ing1\')">Ingénieur GLID 1 (2025-2026)</button>' +
         '<button class="curr-tab-btn '+(activeCurrTab==='ing2'?'on':'')+'" onclick="switchCurrTab(\'ing2\')">Ingénieur GLID 2 (2026-2027)</button>' +
       '</div>' +
@@ -335,19 +331,19 @@ var panels = [
           '<span class="sem-tag">Juil. — Août 2026</span>' +
         '</div>' +
         '<div class="proj-date">Sup\'Com — École Supérieure des Communications de Tunis</div>' +
-        '<div class="proj-desc">Intégration d\'un agent d\'IA embarqué pour le filtrage et traitement intelligent d\'images sur nanosatellite. Application avancée de Computer Vision en environnement spatial contraint.</div>' +
-        '<div class="proj-tech"><span class="tech-tag">Python</span><span class="tech-tag">Computer Vision</span><span class="tech-tag">AI / Deep Learning</span><span class="tech-tag">IoT Spatial</span></div>' +
+        '<div class="proj-desc">Intégration d\'un agent d\'IA embarqué pour le filtrage et le traitement intelligent d\'images sur nanosatellite. Application avancée de vision par ordinateur en environnement spatial contraint.</div>' +
+        '<div class="proj-tech"><span class="tech-tag">Python</span><span class="tech-tag">Vision par ordinateur</span><span class="tech-tag">IA / Apprentissage profond</span><span class="tech-tag">IoT Spatial</span></div>' +
       '</div>';
 
     var projects = [
-      { name:"E-Commerce Pet Shop", date:"Avril 2026", desc:"Plateforme web MVC complète d'achat en ligne : gestion produits, commandes et utilisateurs.", tech:["Java EE","JSP","JSTL","MVC"] },
-      { name:"Tests Logiciels — Monoprix TN", date:"2025–2026", desc:"Rapport complet de tests assistés par IA : tests fonctionnels, automatisés avec Selenium, sécurité OWASP ZAP et audit Lighthouse.", tech:["Selenium","Python","OWASP ZAP","Claude AI"] },
-      { name:"Détection de Sarcasme (NLP)", date:"Déc. 2025", desc:"Classification de texte sur jeu de données très déséquilibré. Score F1 atteint : 0.42.", tech:["Python","scikit-learn","NLP","Deep Learning"] },
-      { name:"Reconnaissance d'Émotions (CV)", date:"Déc. 2025", desc:"Système de reconnaissance faciale des émotions en temps réel.", tech:["Python","OpenCV","Deep Learning"] },
-      { name:"Service Web SOAP & Théorie des Graphes", date:"Mar. 2025", desc:"Serveur SOAP Java EE, client Python (Tkinter GUI), algorithmes de parcours/analyse de graphes.", tech:["Java EE","SOAP","Python","Tkinter","Postman"] },
-      { name:"Applications de Gestion (Auto-école & Radiologie)", date:"2024–2025", desc:"Deux applications Java : plannings/élèves (JavaFX) et dossiers médicaux (MVC, MySQL).", tech:["Java","JavaFX","MySQL","JSON"] },
-      { name:"Mind Room — Plateforme Éducative", date:"Oct. 2025", desc:"Application éducative facilitant l'accès aux ressources et le soutien étudiants.", tech:["Figma","UX/UI","React","Node.js"] },
-      { name:"Flowshop — E-Commerce Fleurs", date:"2023", desc:"Site e-commerce de vente de fleurs avec programme de fidélité Blossom points.", tech:["Wix","Canva"] }
+      { name:"E-Commerce Pet Shop", date:"Avril 2026", desc:"Plateforme web MVC complète d'achat en ligne : gestion des produits, des commandes et des utilisateurs.", tech:["Java EE","JSP","JSTL","MVC"] },
+      { name:"Tests Logiciels — Monoprix TN", date:"2025–2026", desc:"Rapport complet de tests assistés par IA : tests fonctionnels, automatisation avec Selenium, sécurité avec OWASP ZAP et audit Lighthouse.", tech:["Selenium","Python","OWASP ZAP","Claude AI"] },
+      { name:"Détection de Sarcasme (TALN)", date:"Déc. 2025", desc:"Classification de texte sur un jeu de données très déséquilibré. Score F1 atteint : 0.42.", tech:["Python","scikit-learn","TALN","Apprentissage profond"] },
+      { name:"Reconnaissance d'Émotions (Vision)", date:"Déc. 2025", desc:"Système de reconnaissance faciale des émotions en temps réel.", tech:["Python","OpenCV","Apprentissage profond"] },
+      { name:"Service Web SOAP & Théorie des Graphes", date:"Mars 2025", desc:"Serveur SOAP Java EE, client Python (interface Tkinter), algorithmes de parcours et d'analyse de graphes.", tech:["Java EE","SOAP","Python","Tkinter","Postman"] },
+      { name:"Applications de Gestion (Auto-école & Radiologie)", date:"2024–2025", desc:"Deux applications Java : plannings et élèves (JavaFX), dossiers médicaux (MVC, MySQL).", tech:["Java","JavaFX","MySQL","JSON"] },
+      { name:"Mind Room — Plateforme Éducative", date:"Oct. 2025", desc:"Application éducative facilitant l'accès aux ressources et le soutien aux étudiants.", tech:["Figma","UX/UI","React","Node.js"] },
+      { name:"Flowshop — E-Commerce Fleurs", date:"2023", desc:"Site e-commerce de vente de fleurs avec programme de fidélité « Blossom points ».", tech:["Wix","Canva"] }
     ];
 
     var html = '<div class="section-title"><i class="fas fa-laptop-code" style="color:var(--accent)"></i> Expériences & Projets</div>' + exp + '<div class="proj-grid">';
@@ -358,16 +354,17 @@ var panels = [
     c.innerHTML = html;
   }},
 
-  // 4 — SKILLS
+  // 4 — COMPÉTENCES
   { render: function(c) {
     var groups = [
       { label:"Langages de Programmation", skills:["Python","Java","C","C++","Go","Prolog"] },
-      { label:"Intelligence Artificielle & Data", skills:["scikit-learn","OpenCV","NLP","Computer Vision","Deep Learning","Data Mining"] },
-      { label:"Systèmes Distribués & Reseaux", skills:["Apache Kafka","RabbitMQ","Programmation Concurrente (Go/Java)","Certifié CCNA 1 & CCNA 2"] },
-      { label:"Développement Web & Backend", skills:["Java EE (JSP, JSF, JSTL)","JavaFX","REST","SOAP Web Services","MVC"] },
-      { label:"Bases de données & Formatage", skills:["MySQL","JSON","XML","NoSQL"] },
-      { label:"Outils & Quality Assurance", skills:["Git","Postman","Selenium","OWASP ZAP","Figma","Lighthouse"] },
-      { label:"Soft Skills", skills:["Leadership","Résolution de problèmes complexes","Esprit de recherche","Majorante de promotion"] }
+      { label:"Intelligence Artificielle & Data", skills:["scikit-learn","OpenCV","TALN","Vision par ordinateur","Apprentissage profond","Fouille de données"] },
+      { label:"Systèmes Distribués & Réseaux", skills:["Apache Kafka","RabbitMQ","Programmation concurrente (Go/Java)","Cours CCNA 1 & CCNA 2 "] },
+      { label:"Développement Web & Backend", skills:["Java EE (JSP, JSF, JSTL)","JavaFX","REST","Services Web SOAP","MVC"] },
+      { label:"Bases de données & Formats", skills:["MySQL","JSON","XML","NoSQL"] },
+      { label:"Outils & Assurance Qualité", skills:["Git","Postman","Selenium","OWASP ZAP","Figma","Lighthouse"] },
+      { label:"Compétences transversales", skills:["Leadership","Résolution de problèmes complexes","Esprit de recherche"] },
+      { label:"Informatique quantique", skills:["Informatique quantique","Qiskit","IBM Quantum API","Programmation quantique"] }
     ];
     var html = '<div class="section-title"><i class="fas fa-cogs" style="color:var(--accent)"></i> Compétences Techniques</div>';
     groups.forEach(function(g){
@@ -378,21 +375,33 @@ var panels = [
 
   // 5 — CONTACT
   { render: function(c) {
-    function mkContact(svg,label,value){
-      return '<div class="contact-card"><svg viewBox="0 0 24 24">'+svg+'</svg><div><div class="contact-label">'+label+'</div><div class="contact-value">'+value+'</div></div></div>';
+    function mkContact(svg, label, value, href, external) {
+      var attrs = ' href="' + href + '"';
+      if (external) attrs += ' target="_blank" rel="noopener noreferrer"';
+      return '<a class="contact-card"' + attrs + ' style="text-decoration:none;color:inherit">' +
+        '<svg viewBox="0 0 24 24">' + svg + '</svg>' +
+        '<div><div class="contact-label">' + label + '</div><div class="contact-value">' + value + '</div></div>' +
+      '</a>';
     }
     c.innerHTML =
       '<div class="section-title"><i class="fas fa-paper-plane" style="color:var(--accent)"></i> Me Contacter</div>' +
-      '<div class="bio-block">Disponible pour des opportunités de recherche, stages, ou collaborations sur des projets IA et ingénierie logicielle.</div>' +
+      '<div class="bio-block">Disponible pour des opportunités de recherche, des stages ou des collaborations sur des projets d\'IA et d\'ingénierie logicielle.</div>' +
       '<div class="contact-grid">' +
-        mkContact('<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>','Email','jawahdouinsaf2005@gmail.com') +
-        mkContact('<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>','Téléphone','+216 56 277 264') +
-        mkContact('<path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>','LinkedIn','insaf-jawahdou-411880311') +
-        mkContact('<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>','GitHub','github.com/nassouf') +
+        mkContact('<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+          'E-mail', 'jawahdouinsaf2005@gmail.com',
+          'mailto:jawahdouinsaf2005@gmail.com', false) +
+        mkContact('<path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8a19.79 19.79 0 01-3.07-8.68A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>',
+          'Téléphone', '+216 56 277 264',
+          'tel:+21656277264', false) +
+        mkContact('<path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>',
+          'LinkedIn', 'insaf-jawahdou-411880311',
+          'https://www.linkedin.com/in/insaf-jawahdou-411880311', true) +
+        mkContact('<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>',
+          'GitHub', 'github.com/nassouf',
+          'https://github.com/nassouf', true) +
       '</div>' +
       '<div class="chips" style="margin-top:20px">' +
-        '<span class="chip gold">⭐ Major de promotion</span>' +
-        '<span class="chip">Open to research & internships</span>' +
+        '<span class="chip">Ouverte à la recherche et aux stages</span>' +
         '<span class="chip">Tunis / Bizerte, Tunisie</span>' +
       '</div>';
   }}
@@ -401,7 +410,7 @@ var panels = [
 function switchCurrTab(tab){
   activeCurrTab = tab;
   document.querySelectorAll('.curr-tab-btn').forEach(function(b){
-    b.classList.toggle('on', b.getAttribute('onclick').indexOf(tab) !== -1);
+    b.classList.toggle('on', b.getAttribute('onclick').indexOf("'" + tab + "'") !== -1);
   });
   renderCurrTable(tab);
 }
@@ -428,15 +437,15 @@ function renderCurrTable(tab){
       { sem:"Semestre 4", ue:"UE44 Réseaux & Syst.", modules:"Technologies Multimédia, Services Réseaux" }
     ],
     ing1: [
-      { sem:"Semestre 1", ue:"Maths & Signaux", modules:"Recherche Opérationnelle, Théorie de l'Information, Signaux & Images" },
+      { sem:"Semestre 1", ue:"Maths & Signaux", modules:"Recherche Opérationnelle, Signaux & Images" },
       { sem:"Semestre 1", ue:"Info & Distribué", modules:"Python Avancé, IHM, Algo Avancé, Fondements Systèmes Distribués"},
       { sem:"Semestre 1", ue:"IA & IoT & Sécurité", modules:"Apprentissage Automatique 1, Sécurité 1, Réseaux 2"},
       { sem:"Semestre 2", ue:"Systèmes & Modèles", modules:"Optimisation, Syst. Événements Discrets, Test Logiciel, Prog Logique, Linux 1" },
       { sem:"Semestre 2", ue:"Sémantique & IA", modules:"Sémantique Langages, Middleware Réparti, Virtualisation, Fondements IA, Services Web" }
     ],
     ing2: [
-      { sem:"Semestre 3", ue:"AI & Data Science", modules:"Geographical Information System, BI, Statistical Learning, Formal Methods, ML" },
-      { sem:"Semestre 3", ue:"EAD & Sécurité", modules:"BD NoSQL, Architectures Réparties, Cybersecurity, Sécurité Réseaux, MLOps, IoT 1, Advanced Web" }
+      { sem:"Semestre 3", ue:"IA & Science des Données", modules:"Systèmes d'Information Géographique, Informatique Décisionnelle (BI), Apprentissage Statistique, Méthodes Formelles, Apprentissage Automatique" },
+      { sem:"Semestre 3", ue:"EAD & Sécurité", modules:"BD NoSQL, Architectures Réparties, Cybersécurité, Sécurité Réseaux, Développement Mobile, IoT 1, Web Avancé" }
     ]
   };
 
@@ -462,6 +471,7 @@ function showPanel(idx){
   cp.className = 'cp-anim';
 
   panels[currentIdx].render(cp);
+  window.scrollTo(0,0);
 
   document.querySelectorAll('.nb').forEach(function(btn, i){
     btn.classList.toggle('on', i === currentIdx);
@@ -497,17 +507,6 @@ document.addEventListener('DOMContentLoaded', function(){
   var rightArrow = document.getElementById('arrow-right');
   if(leftArrow) leftArrow.onclick = function(){ showPanel(currentIdx - 1); };
   if(rightArrow) rightArrow.onclick = function(){ showPanel(currentIdx + 1); };
-
-  var zoneLeft = document.getElementById('zone-left');
-  var zoneRight = document.getElementById('zone-right');
-  if(zoneLeft && leftArrow){
-    zoneLeft.onmouseenter = function(){ if(currentIdx > 0) leftArrow.classList.add('visible'); };
-    zoneLeft.onmouseleave = function(){ leftArrow.classList.remove('visible'); };
-  }
-  if(zoneRight && rightArrow){
-    zoneRight.onmouseenter = function(){ if(currentIdx < panels.length - 1) rightArrow.classList.add('visible'); };
-    zoneRight.onmouseleave = function(){ rightArrow.classList.remove('visible'); };
-  }
 
   document.addEventListener('keydown', function(e){
     if(e.key === 'ArrowLeft') showPanel(currentIdx - 1);
